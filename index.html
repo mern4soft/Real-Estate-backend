@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <div class="">
+
+        <div class="">
+            <p id="p"></p>
+        </div>
+        <input type="submit" onclick="typemessage()">
+        <input  type="text" id="input"  name="" id="">
+    </div>
+    <script src="https://cdn.socket.io/4.7.4/socket.io.min.js" integrity="sha384-Gr6Lu2Ajx28mzwyVR8CFkULdCU7kMlZ9UthllibdOSo6qAiN+yXNHqtgdTvFXMT4" crossorigin="anonymous"></script>
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io("http://localhost:3001/");
+
+
+      socket.emit('message','hlooo')
+
+        socket.on('sent_message',(data)=>{
+            console.log(data,'dd');
+           document.getElementById("p").innerHTML = data
+        })
+
+        function typemessage() {
+            let v = document.getElementById("input").value
+                    
+            console.log(v);
+            
+        socket.on('sent_message',(v)=>{
+
+            alert(message)
+
+        
+        })}
+
+
+
+    </script>
+</body>
+</html>
