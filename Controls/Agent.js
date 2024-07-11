@@ -1,6 +1,7 @@
-const Agent = require("../models/Agent")
 
-const hashpass = require('../hashpass/hash')
+import Agent from '../models/Agent.js'
+// import { welcome, hello } from '../hash.js';
+
 
 
 //Register a Agent 
@@ -17,7 +18,7 @@ export const RegisterAgent = async(req,res) =>{
     }
 
     console.log(encryptpassword);
-    const Encpassword = await encryptpassword(req.body.password)
+    const Encpassword = await welcome(req.body.password)
 
 
 
@@ -48,7 +49,7 @@ export const LoginAgent = async(req,res) =>{
     try {
         const agent = await AgentModel.findOne({ email: email });
 
-        let decryptpassword = await comparepassword(password, agent.password)
+        let decryptpassword = await hello(password, agent.password)
 
         if (agent && decryptpassword) {
             const token = jwt.sign(
@@ -75,10 +76,10 @@ export const LoginAgent = async(req,res) =>{
 //find the agent
 
 
-export const Agent = async(req,res) =>{
-    const getUser = await AgentModel.find()
-    res.json(getUser)
-}
+// export const Agent = async(req,res) =>{
+//     const getUser = await AgentModel.find()
+//     res.json(getUser)
+// }
 
 
 //get a agent by id

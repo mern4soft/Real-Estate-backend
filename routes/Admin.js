@@ -1,5 +1,5 @@
-const express =  require('express')
-import { RegisterAdmin , LoginAdmin } from '../Controls/Admin'
+import express from 'express'
+import { RegisterAdmin , LoginAdmin } from '../Controls/Admin.js'
 
 
 const router = express.Router()

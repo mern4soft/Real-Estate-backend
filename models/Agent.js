@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 const AgentSchema = new mongoose.Schema({
     name:String,
@@ -17,4 +17,4 @@ const AgentSchema = new mongoose.Schema({
 })
 
 const AgentModel = mongoose.model("Agent",AgentSchema)
-module.exports = AgentModel
+export default AgentModel

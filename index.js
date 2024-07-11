@@ -1,39 +1,29 @@
-const express = require('express')
-const mongoose = require('mongoose')
-const PropertyModel = require('./models/PropertyType')
-const OderModel = require('./models/Oderprop')
-const AgentModel = require('./models/Agent')
-const AdminModel = require('./models/Admin')
-const cors = require('cors')
-const UserModel = require('./models/User')
-const dotenv = require('dotenv')
-const { encryptpassword, comparepassword } = require('./hashpass/hash')
-const nodemailer = require("nodemailer");
-const {createServer} = require('http')
-import AgentRouter from './routes/Agent'
-import AdminRouter from './routes/Admin'
-import PropertyRouter from './routes/Property'
-
-
-
-
-
-
-
-const jwt = require("jsonwebtoken")
-const MessageModel = require('./models/Message')
-
-
-
-
-
+import express from 'express';
+import mongoose from 'mongoose';
+// import PropertyModel from './models/PropertyType.js';
+import OderModel from './models/Oderprop.js';
+// import AgentModel from './models/Agent.js';
+// import AdminModel from './models/Admin.js';
+import cors from 'cors';
+import UserModel from './models/User.js';
+import dotenv from 'dotenv';
+// import {hello,welcome} from './hash.js'
+import nodemailer from 'nodemailer';
+import { createServer } from 'http';
+import AgentRouter from './routes/Agent.js';
+import AdminRouter from './routes/Admin.js';
+// import PropertyRouter from './routes/Property.js';
+import jwt from 'jsonwebtoken';
+import MessageModel from './models/Message.js';
+import { Server } from 'socket.io'
+import { log } from 'console';
+import bcrypt from 'bcrypt'
 
 
 const app = express()
 
 const httpServer = createServer(app);
 
-const { Server } = require("socket.io");
 
 const io = new Server(httpServer,{cors:{
     origin:"*",
@@ -98,7 +88,7 @@ app.get('/send-email', (req, res) => {
 
 app.use("/api/agent", AgentRouter )
 app.use("/api/admin" , AdminRouter )
-app.use("/api/property" , PropertyRouter)
+// app.use("/api/property" , PropertyRouter)
 
 
 
@@ -157,7 +147,7 @@ app.post('/user/signup', async (req, res) => {
 
     const newUser = new UserModel(req.body)
 
-    let userpassword = await encryptpassword(password)
+    let userpassword = await bcrypt.hash(password,10)
     newUser.password = userpassword
     const hello = await newUser.save()
     res.json({
@@ -173,7 +163,7 @@ app.post('/user/login', async (req, res) => {
 
     const getUser = await UserModel.findOne({ email })
     if (getUser) {
-        const validateUserpass = await comparepassword(passward, getUser.password)
+        const validateUserpass = await hello(passward, getUser.password)
         if (validateUserpass) {
             let token = jwt.sign({ id: getUser._id }, process.env.JWT_SECRET, { expiresIn: "2h" })
             res.json({
@@ -208,15 +198,8 @@ app.post('/messages', async (req, res) => {
 
 
 
-
-
-
-
-
-
-
-
-mongoose.connect('mongodb://127.0.0.1:27017/RealEstate')
+mongoose.connect('mongodb+srv://bhagyaraj168:kannan2001@cluster0.7nf6oiw.mongodb.net/RealEstate')
+.then(()=>console.log("server is running -----------------"))
 
 
 

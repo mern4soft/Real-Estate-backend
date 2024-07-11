@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 const OderSchema = new mongoose.Schema({
 
@@ -12,4 +12,4 @@ const OderSchema = new mongoose.Schema({
 })
 
 const OderModel = mongoose.model("oders",OderSchema)
-module.exports = OderModel
+export default OderModel

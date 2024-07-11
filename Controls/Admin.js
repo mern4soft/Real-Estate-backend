@@ -1,6 +1,8 @@
-const Admin = require("../models/Admin")
 
-const hashpass = require('../hashpass/hash')
+import Admin from '../models/Admin.js'
+
+// import { welcome, hello } from '../hash.js';
+
 
 
 
@@ -19,7 +21,7 @@ export const RegisterAdmin = async(req,res) =>{
 
     const Admin = await new AdminModel(req.body)
 
-    const Encpassword = await encryptpassword(password)
+    const Encpassword = await welcome(password)
 
     Admin.password = Encpassword
 
@@ -50,7 +52,7 @@ export  const LoginAdmin = async(req,res) =>{
      }
 
      if (getAdminEmail) {
-        const isValidpassword = await comparepassword(password, getAdminEmail.password)
+         const isValidpassword = await hello(password, getAdminEmail.password)
         if (isValidpassword) {
             const token = jwt.sign({ id: getAdminEmail._id }, process.env.JWT_SECRET, { expiresIn: "2h" })
 

@@ -1,7 +1,7 @@
-const express = require('express')
+import express from 'express'
 
 
-import {RegisterAgent,LoginAgent,Agent,AgentbyId,UpdateAgent} from '../Controls/Agent'
+import {RegisterAgent,LoginAgent,AgentbyId,UpdateAgent} from '../Controls/Agent.js'
 
 
 
@@ -16,7 +16,7 @@ router .put('/:id', UpdateAgent)
 
 router .get('/:id', AgentbyId)
 
-router .get ('/', Agent)
+// router .get ('/', Agent)
 
 
 export default router;
