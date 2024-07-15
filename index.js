@@ -203,6 +203,6 @@ mongoose.connect('mongodb+srv://bhagyaraj168:kannan2001@cluster0.7nf6oiw.mongodb
 
 
 
-httpServer.listen(3001,'0.0.0.0', () => {
+httpServer.listen(3001, () => {
     console.log('The server is running');
 })
