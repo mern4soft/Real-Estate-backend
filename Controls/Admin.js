@@ -1,4 +1,5 @@
 
+import AdminModel from '../models/Admin.js'
 import Admin from '../models/Admin.js'
 
 // import { welcome, hello } from '../hash.js';
