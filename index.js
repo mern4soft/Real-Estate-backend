@@ -17,7 +17,7 @@ import jwt from 'jsonwebtoken';
 import MessageModel from './models/Message.js';
 import { Server } from 'socket.io'
 import { log } from 'console';
-import bcrypt from 'bcrypt'
+
 
 
 const app = express()
