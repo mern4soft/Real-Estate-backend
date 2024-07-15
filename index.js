@@ -146,9 +146,6 @@ app.post('/user/signup', async (req, res) => {
     }
 
     const newUser = new UserModel(req.body)
-
-    let userpassword = await bcrypt.hash(password,10)
-    newUser.password = userpassword
     const hello = await newUser.save()
     res.json({
         User: hello
@@ -161,16 +158,14 @@ app.post('/user/login', async (req, res) => {
 
     const { email, password } = req.body
 
-    const getUser = await UserModel.findOne({ email })
+    const getUser = await UserModel.findOne({ email,password })
     if (getUser) {
-        const validateUserpass = await hello(passward, getUser.password)
-        if (validateUserpass) {
             let token = jwt.sign({ id: getUser._id }, process.env.JWT_SECRET, { expiresIn: "2h" })
             res.json({
                 User: getUser,
                 Token: token
             })
-        }
+        
 
 
 

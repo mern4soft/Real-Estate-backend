@@ -21,10 +21,7 @@ export const RegisterAdmin = async(req,res) =>{
 
     const Admin = await new AdminModel(req.body)
 
-    const Encpassword = await welcome(password)
-
-    Admin.password = Encpassword
-
+  
 
 
     const admin = await Admin.save()
@@ -45,22 +42,20 @@ export  const LoginAdmin = async(req,res) =>{
         return res.json("Add Data")
      }
 
-    const getAdminEmail = await AdminModel.findOne({ email })
+    const getAdminEmail = await AdminModel.findOne({ email ,password})
 
      if (!getAdminEmail) {
         return res.json("Admin Does't exist")
      }
 
      if (getAdminEmail) {
-         const isValidpassword = await hello(password, getAdminEmail.password)
-        if (isValidpassword) {
+        
             const token = jwt.sign({ id: getAdminEmail._id }, process.env.JWT_SECRET, { expiresIn: "2h" })
 
             res.json({
                 Admin: getAdminEmail,
                 Token: token
             })
-        }
 
 
     }
