@@ -18,7 +18,7 @@ import multer from 'multer';
 
 
 const app = express()
-app.use(express.static(path.join(__dirname, 'uploads')));
+app.use(express.static('uploads'));
 const httpServer = createServer(app);
 
 const storage = multer.diskStorage({
