@@ -13,12 +13,27 @@ import AdminRouter from './routes/Admin.js';
 import jwt from 'jsonwebtoken';
 import MessageModel from './models/Message.js';
 import { Server } from 'socket.io'
+import multer from 'multer';
 
 
 
 const app = express()
-
+app.use(express.static(path.join(__dirname, 'uploads')));
 const httpServer = createServer(app);
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'uploads/');
+    },
+    filename: function (req, file, cb) {
+      cb(null, Date.now() + path.extname(file.originalname)); // Appending extension
+    }
+  });
+  
+
+  const upload = multer({ storage: storage });
+
+
 
 
 const io = new Server(httpServer,{cors:{
@@ -96,7 +111,7 @@ app.use("/api/admin" , AdminRouter )
 //     res.json(getPropertyofAgent)
 // })
 
-app.post('/property', async(req,res)=>{
+app.post('/property',upload.single('file') ,async(req,res)=>{
     console.log(req.body);
     const newProperty = new PropertyModel(req.body)
     const savedProperty = await newProperty.save()
