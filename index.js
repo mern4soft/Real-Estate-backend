@@ -1,6 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
-// import PropertyModel from './models/PropertyType.js';
+import PropertyModel from './models/PropertyType.js';
 import OderModel from './models/Oderprop.js';
 // import AgentModel from './models/Agent.js';
 // import AdminModel from './models/Admin.js';
@@ -12,7 +12,7 @@ import nodemailer from 'nodemailer';
 import { createServer } from 'http';
 import AgentRouter from './routes/Agent.js';
 import AdminRouter from './routes/Admin.js';
-// import PropertyRouter from './routes/Property.js';
+import PropertyRouter from './routes/Property.js';
 import jwt from 'jsonwebtoken';
 import MessageModel from './models/Message.js';
 import { Server } from 'socket.io'
@@ -88,7 +88,7 @@ app.get('/send-email', (req, res) => {
 
 app.use("/api/agent", AgentRouter )
 app.use("/api/admin" , AdminRouter )
-// app.use("/api/property" , PropertyRouter)
+app.use("/api/property" , PropertyRouter)
 
 
 
