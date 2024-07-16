@@ -1,9 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import PropertyModel from './models/PropertyType.js';
 import OderModel from './models/Oderprop.js';
-// import AgentModel from './models/Agent.js';
-// import AdminModel from './models/Admin.js';
 import cors from 'cors';
 import UserModel from './models/User.js';
 import dotenv from 'dotenv';
@@ -12,7 +9,7 @@ import nodemailer from 'nodemailer';
 import { createServer } from 'http';
 import AgentRouter from './routes/Agent.js';
 import AdminRouter from './routes/Admin.js';
-import PropertyRouter from './routes/Property.js';
+import PropertyRouter from '../routes/Property.js';
 import jwt from 'jsonwebtoken';
 import MessageModel from './models/Message.js';
 import { Server } from 'socket.io'
@@ -94,11 +91,11 @@ app.use("/api/property" , PropertyRouter)
 
 
 
-app.get('/property/:id', async (req, res) => {
-    const id = req.params.id 
-    const getPropertyofAgent = await PropertyModel.find({ isAgent: new mongoose.Types.ObjectId(id) })
-    res.json(getPropertyofAgent)
-})
+// app.get('/property/:id', async (req, res) => {
+//     const id = req.params.id 
+//     const getPropertyofAgent = await PropertyModel.find({ isAgent: new mongoose.Types.ObjectId(id) })
+//     res.json(getPropertyofAgent)
+// })
 
 
 //Oder

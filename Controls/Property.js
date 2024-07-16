@@ -46,7 +46,6 @@ export const  UpdateProperty = async(req,res)=>{
 
 
 export const DeleteProperty = async(req,res) =>{
-
     const id = req.params.id
     const updateprop = await PropertyModel.findByIdAndDelete(id)
     res.json(updateprop)
