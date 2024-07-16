@@ -104,7 +104,32 @@ app.post('/property', async(req,res)=>{
 
 })
 
+app.get('/createtypeofprop',async(req,res) =>{
+    const newProperty = await PropertyModel.find()
+    res.json(newProperty)
+})
 
+
+app.get('/property/:id',async(req,res) =>{
+    const id = req.params.id
+    const GetProductById = await PropertyModel.findById(id)
+    res.json(GetProductById)
+})
+
+
+
+app.put('/property/:id', async(req,res)=>{
+    const id = req.params.id;
+    const updateprop = await PropertyModel.findByIdAndUpdate(id, { $set: { ...req.body } } ,{new:true});
+    res.json(updateprop)
+})
+
+app.delete('/property/:id', async(req,res) =>{
+    const id = req.params.id
+    const updateprop = await PropertyModel.findByIdAndDelete(id,{new:true})
+    res.json(updateprop)
+
+})
 
 //Oder
 
