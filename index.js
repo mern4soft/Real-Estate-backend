@@ -4,17 +4,15 @@ import OderModel from './models/Oderprop.js';
 import cors from 'cors';
 import UserModel from './models/User.js';
 import dotenv from 'dotenv';
-import PropertyModel from '../models/PropertyType'
+import PropertyModel from './models/PropertyType.js'
 // import {hello,welcome} from './hash.js'
 import nodemailer from 'nodemailer';
 import { createServer } from 'http';
 import AgentRouter from './routes/Agent.js';
 import AdminRouter from './routes/Admin.js';
-import PropertyRouter from '../routes/Property.js';
 import jwt from 'jsonwebtoken';
 import MessageModel from './models/Message.js';
 import { Server } from 'socket.io'
-import { log } from 'console';
 
 
 
