@@ -4,6 +4,7 @@ import OderModel from './models/Oderprop.js';
 import cors from 'cors';
 import UserModel from './models/User.js';
 import dotenv from 'dotenv';
+import PropertyModel from '../models/PropertyType'
 // import {hello,welcome} from './hash.js'
 import nodemailer from 'nodemailer';
 import { createServer } from 'http';
@@ -85,7 +86,7 @@ app.get('/send-email', (req, res) => {
 
 app.use("/api/agent", AgentRouter )
 app.use("/api/admin" , AdminRouter )
-app.use("/api/property" , PropertyRouter)
+// app.use("/api/property" , PropertyRouter)
 
 
 
@@ -96,6 +97,15 @@ app.use("/api/property" , PropertyRouter)
 //     const getPropertyofAgent = await PropertyModel.find({ isAgent: new mongoose.Types.ObjectId(id) })
 //     res.json(getPropertyofAgent)
 // })
+
+app.post('/property', async(req,res)=>{
+    console.log(req.body);
+    const newProperty = new PropertyModel(req.body)
+    const savedProperty = await newProperty.save()
+    res.json(savedProperty)
+
+})
+
 
 
 //Oder
