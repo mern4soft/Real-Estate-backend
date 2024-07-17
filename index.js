@@ -14,7 +14,8 @@ import jwt from 'jsonwebtoken';
 import MessageModel from './models/Message.js';
 import { Server } from 'socket.io'
 import multer from 'multer';
-import bodyParser from 'bodyParser'
+import bodyParser from 'body-parser';
+
 
 
 
