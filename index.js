@@ -14,6 +14,7 @@ import jwt from 'jsonwebtoken';
 import MessageModel from './models/Message.js';
 import { Server } from 'socket.io'
 import multer from 'multer';
+import bodyParser from 'bodyParser'
 
 
 
@@ -57,6 +58,8 @@ app.use(express.json())
 app.use(cors());
 
 dotenv.config()
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 
 const transporter = nodemailer.createTransport({

@@ -31,7 +31,7 @@ const PropertySchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Admin', // Reference to the Admin model
     
-  },
+  }
 });
 
 
