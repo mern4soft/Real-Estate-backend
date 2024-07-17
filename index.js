@@ -118,7 +118,6 @@ app.use("/api/admin" , AdminRouter )
 
 app.post('/property',async(req,res)=>{
     console.log(req.body);
-    req.body={...req.body,propertyImage:req.file.filename}
     const newProperty = new PropertyModel(req.body)
     const savedProperty = await newProperty.save()
     res.json(savedProperty)
