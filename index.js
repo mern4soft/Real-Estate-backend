@@ -116,7 +116,7 @@ app.use("/api/admin" , AdminRouter )
 //     res.json(getPropertyofAgent)
 // })
 
-app.post('/property',upload.single('propertyImage') ,async(req,res)=>{
+app.post('/property',async(req,res)=>{
     console.log(req.body);
     req.body={...req.body,propertyImage:req.file.filename}
     const newProperty = new PropertyModel(req.body)
